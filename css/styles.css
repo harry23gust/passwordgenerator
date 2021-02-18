@@ -10,9 +10,77 @@ body {
   }
   
   .container {
-    background-color:rgba(29, 167, 36, 0.842);
-    padding: 2rem;
+    background-color:rgba(45, 65, 46, 0.842);
+    padding: 4rem;
     border-radius: 1rem;
     border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     
+  }
+
+  .form {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 1rem;
+    column-gap: 4rem;
+    align-items: center;
+  }
+
+  label {
+    font-weight: bolder;
+  }
+  .Password-display {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid #333;
+    height: 2rem;
+    width: 350px;
+  }
+
+  .character-ammount-container {
+display: flex;
+align-items: center;
+
+  }
+
+  .number-input {
+    width: 2rem;
+  }
+
+  .password-display{
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border: 1px solid rgb(45, 65, 46, 0.842);
+    width: 350px;
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+  }
+
+  .button {
+    grid-column: span 2;
+    background-color: transparent;
+    border: 2px solid white;
+    pad: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+
+  }
+
+  .character-ammount-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .title {
+    margin: 0;
+    text-align: center;
+  }
+
+  .button:hover {
+    background-color: #ffffff33;
   }
