@@ -1,37 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="css/styles.css">
-  <title>Password Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">Password Generator</h1>
-    <h3 class="password-display" id="passwordDisplay">password</h3>
-    <form id="passwordGeneratorForm" class="form">
-      <label for="characterAmountNumber">Number Of Characters</label>
-      <div class="character-amount-container">
-        <input type="range" min="8" max="128" value="8" id="characterAmountRange">
-        <input class="number-input" type="number" min="8" max="128" value="8" id="characterAmountNumber">
-      </div>
+    <header>
+        <p class="h1" style="font-weight: bold; margin-bottom: 3%; text-align: center;">Password Generator</p>
+    </header>
 
-      <label for="includeUppercase">Include Uppercase</label>
-      <input type="checkbox" id="includeUppercase">
 
-      <label for="includeNumbers">Include Numbers</label>
-      <input type="checkbox" id="includeNumbers">
+    <div class="card shadow-sm bg-white" style="min-width: 40%; max-height: 50%;">
+        <div class="card-body">
+            <h2 class="card-title" style="font-weight: bold">Generate a Password</h2>
+            <textarea style= "margin:5% auto; padding: 10%; text-align:center; border: dashed 2px grey; width: 100%;" readonly id="password" placeholder="Your Secure Password"></textarea>
+            
+            <div class="row justify-content-between m-0">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
 
-      <label for="includeSymbols">Include Symbols</label>
-      <input type="checkbox" id="includeSymbols">
 
-      <button type="submit" class="btn">Generate Password</button>
-    </form>
-  </div>
+                 <button onclick="generatePass()" type="button" class="btn btn-light" style= "border-radius:20px; background-color: darkred; color:white;">Generate Password</button>
+                </div>
+               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                 <button onclick="copyPass()" type="button" class="btn btn-light" style= "border-radius:20px; background-color:grey; color:white;">Copy to clipboard</button>
+               </div>    
+            </div>
+        </div>
+    </div>
+        
+  <script src="script.js"> </script>
+
 </body>
 </html>
-

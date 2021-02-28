@@ -1,61 +1,75 @@
+// Set static variables
   
-const characterAmountRange = document.getElementById('characterAmountRange')
-const characterAmountNumber = document.getElementById('characterAmountNumber')
-const includeUppercaseElement = document.getElementById('includeUppercase')
-const includeNumbersElement = document.getElementById('includeNumbers')
-const includeSymbolsElement = document.getElementById('includeSymbols')
-const form = document.getElementById('passwordGeneratorForm')
-const passwordDisplay = document.getElementById('passwordDisplay')
+var abcUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var abcUpperArr = abcUpper.split("");
+var abcLower = "abcdefghijklmnopqrstuvwxyz";
+var abcLowerArr = abcLower.split("");
+var num = "0123456789";
+var numArr = num.split("");
+var sym = "!#$%&\()*+,-./:;<=>?@^[\\]^_`{|}~";
+var symArr = sym.split("");
 
-const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(64, 95)
-const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(96, 126)
-const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
-const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
-  arrayFromLowToHigh(58, 64)
-).concat(
-  arrayFromLowToHigh(91, 96)
-).concat(
-  arrayFromLowToHigh(123, 126)
-)
+//  Prompt instruction for the user to begin
 
-characterAmountNumber.addEventListener('input', syncCharacterAmount)
-characterAmountRange.addEventListener('input', syncCharacterAmount)
+window.onload = alert("Welcome! Please click 'Generate password' to start!");
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  const characterAmount = characterAmountNumber.value
-  const includeUppercase = includeUppercaseElement.checked
-  const includeNumbers = includeNumbersElement.checked
-  const includeSymbols = includeSymbolsElement.checked
-  const password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
-  passwordDisplay.innerText = password
-})
+// Main function = Password Generation
 
-function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
-  let charCodes = LOWERCASE_CHAR_CODES
-  if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
-  if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
-  if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
-  
-  const passwordCharacters = []
-  for (let i = 0; i < characterAmount; i++) {
-    const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
-    passwordCharacters.push(String.fromCharCode(characterCode))
-  }
-  return passwordCharacters.join('')
+function generatePass(){
+ var allChars = [];
+ var resultPass = "";
+
+// Set dynamic variables
+
+ var passwordLenght = prompt("How long do you want your password to be?");
+
+ if(passwordLenght <8 || passwordLenght > 128){
+     alert("Your password shoulkd be  between 8 and 128 characters long!\nTry again.");
+ }
+
+// Confirm the rest of character conditions
+ 
+ else{
+     if(confirm("Do you want to include Upper letters?")){
+         Array.prototype.push.apply(allChars, abcUpperArr);
+     }
+
+     if(confirm("Do you want to include lower case letters?")){
+         Array.prototype.push.apply(allChars, abcLowerArr);
+     }
+
+     if(confirm("Do you want to include numbers?")){
+         Array.prototype.push.apply(allChars, numArr);
+     }
+
+     if(confirm("Do you want to include symbols?")){
+         Array.prototype.push.apply(allChars, symArr);
+     }
+
+     if(allChars.length===0){
+         alert("You must select at lease 1 type of characters to generate a password!\nPlease start over.");
+     }
+
+// Run for loop to use confirmed information and generate password as a result
+
+     else{
+         for(var i=0; i<passwordLenght; i++){
+             var random = Math.floor(Math.random()*allChars.length);
+             resultPass += allChars[random];
+         }
+     }
+     }
+
+// Display the result
+
+     document.getElementById("password").innerHTML = resultPass;
 }
 
-function arrayFromLowToHigh(low, high) {
-  const array = []
-  for (let i = low; i <= high; i++) {
-    array.push(i)
-  }
-  return array
-}
+// Bonus! function to copy password to clipboard
 
-function syncCharacterAmount(e) {
-  const value = e.target.value
-  characterAmountNumber.value = value
-  characterAmountRange.value = value
-}
+function copyPass(){
 
+ document.querySelector("textarea").select();
+ document.execCommand("Copy");
+ alert("Password copied to clipboard!");
+}
